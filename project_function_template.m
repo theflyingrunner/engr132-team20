@@ -14,9 +14,9 @@ replace this text with a commented list of the input arguments
 replace this text with a commented list of the output arguments
 %
 % Assignment Information
-%   Assignment:     M##, Problem #
-%   Team member:    Name, login@purdue.edu [repeat for each person]
-%   Team ID:        ###-##
+%   Assignment:     M2, Problem #
+%   Team member:    Saron Bhoopathy, sbhoopat@purdue.edu [repeat for each person]
+%   Team ID:        014-20
 %   Academic Integrity:
 %     [] We worked with one or more peers but our collaboration
 %        maintained academic integrity.
