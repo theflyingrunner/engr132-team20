@@ -2,7 +2,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ENGR 132 
 % Program Description 
-% replace this text with your program description as a comment
+% This function does v naught calculations
 %
 % Function Call
 % replace this text with a comment that states the function call
