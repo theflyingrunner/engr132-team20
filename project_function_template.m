@@ -15,7 +15,10 @@
 %
 % Assignment Information
 %   Assignment:     M2, Problem #
-%   Team member:    Saron Bhoopathy, sbhoopat@purdue.edu [repeat for each person]
+%   Team member:    Saron Bhoopathy, sbhoopat@purdue.edu
+%                   Jack Likens, likens2@purdue.edu
+%                   Jeremiah Monteiro, monteiro@purdue.edu
+%                   Christian Boshoven, cboshoven@purdue.edu
 %   Team ID:        014-20
 %   Academic Integrity:
 %     [] We worked with one or more peers but our collaboration
