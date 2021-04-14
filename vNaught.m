@@ -1,30 +1,38 @@
-%function velocityFunction
+function [subConc,v_naught_sub_i] = vNaught()
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ENGR 132 
 % Program Description 
-% This function does v naught calculations
+% This function utilizes the provided dataset to do the following:
+%   1. Parse the .csv to separate the reaction curve parameters for each
+%   enzyme. In addition, it finds the mean of the test duplicates.
+%   2. Perform linear regression for the first 20 seconds of reaction to
+%   identify initial reaction rate. 
+%   3. Generate reaction curves for all 5 enzymes
+%   4. Generate noisy Micheles-Menten curve 
+% To use the function, use command:
+% [substrate_concentration, v_naught] = vNaught()
+% This will create two variables in your workspace: one with substrate
+% concentrations (uM) and another with tthe v0 [uM/s] for all 5 enzymes.
 %
 % Function Call
-% replace this text with a comment that states the function call
+% vNaught()
 %
 % Input Arguments
-% replace this text with a commented list of the input arguments
+% None
 %
 % Output Arguments
-% replace this text with a commented list of the output arguments
+% [substrate_concentration, v_naught] 
 %
 % Assignment Information
-%   Assignment:     M2, Problem #
+%   Assignment:     M2 
 %   Team member:    Saron Bhoopathy, sbhoopat@purdue.edu
 %                   Jack Likens, likens2@purdue.edu
 %                   Jeremiah Monteiro, monteiro@purdue.edu
 %                   Christian Boshoven, cboshoven@purdue.edu
 %   Team ID:        014-20
 %   Academic Integrity:
-%     [] We worked with one or more peers but our collaboration
+%     [x] We worked with one or more peers but our collaboration
 %        maintained academic integrity.
-%     Peers we worked with: Name, login@purdue [repeat for each]
-% did you complete the assignment information? delete this line if yes
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% ____________________
@@ -62,11 +70,7 @@ enzymeE1 = rawData(3:7486,82:91);
 enzymeE2 = rawData(3:7486,92:101);
 enzymeE = (enzymeE1+enzymeE2)./2;
 
-vNaughtA = zeros(1,10);
-vNaughtB = zeros(1,10);
-vNaughtC = zeros(1,10);
-vNaughtD = zeros(1,10);
-vNaughtE = zeros(1,10);
+v_naught_sub_i = zeros(5,10);
 %% ____________________
 %% CALCULATIONS
 
@@ -78,32 +82,32 @@ vNaughtE = zeros(1,10);
 % Enzyme A
 for substrateLoop = 1:10
     coeffs = polyfit(time(1:21),enzymeA(1:21,substrateLoop),1);
-    vNaughtA(1,substrateLoop) = coeffs(1);
+    v_naught_sub_i(1,substrateLoop) = coeffs(1);
 end
 % Enzyme B
 for substrateLoop = 1:10
     coeffs = polyfit(time(1:21),enzymeB(1:21,substrateLoop),1);
-    vNaughtB(1,substrateLoop) = coeffs(1);
+    v_naught_sub_i(2,substrateLoop) = coeffs(1);
 end
 % Enzyme C
 for substrateLoop = 1:10
     coeffs = polyfit(time(1:21),enzymeC(1:21,substrateLoop),1);
-    vNaughtC(1,substrateLoop) = coeffs(1);
+    v_naught_sub_i(3,substrateLoop) = coeffs(1);
 end
 % Enzyme D
 for substrateLoop = 1:10
     coeffs = polyfit(time(1:21),enzymeD(1:21,substrateLoop),1);
-    vNaughtD(1,substrateLoop) = coeffs(1);
+    v_naught_sub_i(4,substrateLoop) = coeffs(1);
 end
 % Enzyme E
 for substrateLoop = 1:10
     coeffs = polyfit(time(1:21),enzymeE(1:21,substrateLoop),1);
-    vNaughtE(1,substrateLoop) = coeffs(1);
+    v_naught_sub_i(5,substrateLoop) = coeffs(1);
 end
 
 %% ____________________
 %% FORMATTED TEXT/FIGURE DISPLAYS
-
+% Plot set 1/2
 % Product Concentration [uM] vs. time [s] graphs for all 5 enzymes
 % This will help in identifying the slope to determine initial reaction
 % rate
@@ -182,6 +186,55 @@ end
 lgd = legend('S1: 3.75','S2: 7.5','S3: 15','S4: 30','S5: 65','S6: 125','S7: 250','S8: 500','S9: 1000', 'S10: 2000');
 lgd.Title.String = 'Substrate Concentration [uM]';
 hold off
+
+% Plot set 2/2
+% Micheles-Menten curve of vNaught [uM/s]vs. substrate concentration [uM] 
+% Enzyme A
+subplot(3,2,1)
+plot(subConc(1,:),v_naught_sub_i(1,:))
+grid on
+xlabel('[S](uM)')
+ylabel('v0 (uM/s)')
+title('Enzyme A')
+% Enzyme B
+subplot(3,2,2)
+plot(subConc(1,:),v_naught_sub_i(2,:))
+grid on
+xlabel('[S](uM)')
+ylabel('v0 (uM/s)')
+title('Enzyme B')
+% Enzyme C
+subplot(3,2,3)
+plot(subConc(1,:),v_naught_sub_i(3,:))
+grid on
+xlabel('[S](uM)')
+ylabel('v0 (uM/s)')
+title('Enzyme C')
+% Enzyme D
+subplot(3,2,4)
+plot(subConc(1,:),v_naught_sub_i(4,:))
+grid on
+xlabel('[S](uM)')
+ylabel('v0 (uM/s)')
+title('Enzyme D')
+% Enzyme E
+subplot(3,2,5)
+plot(subConc(1,:),v_naught_sub_i(5,:))
+grid on
+xlabel('[S](uM)')
+ylabel('v0 (uM/s)')
+title('Enzyme E')
+% Subplot formatting 
+h(1) = subplot(3,2,1);
+h(2) = subplot(3,2,2);
+h(3) = subplot(3,2,3);
+h(4) = subplot(3,2,4);
+h(5) = subplot(3,2,5); % the last (odd) axes
+pos = get(h,'Position');
+new = mean(cellfun(@(v)v(1),pos(1:2)));
+set(h(5),'Position',[new,pos{end}(2:end)])
+sgtitle({'Micheles-Menten Curve of Initial Reaction Rate [uM/s]',...
+    'varying with Substrate Concentration [uM] for the Five Enzymes'})
 %% ____________________
 %% RESULTS
 
