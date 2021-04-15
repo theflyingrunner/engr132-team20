@@ -1,5 +1,5 @@
 # engr132-team20
-How to use GitHub:
+# How to use GitHub:
 # Step 1:
    Check where the engr132-team20 repo is on your computer. For example, let's say my directory is: C:\project\engr132-team20. Open git bash and type in: 
    `cd "C:\project\engr132-team20"`
