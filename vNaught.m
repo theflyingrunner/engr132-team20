@@ -116,7 +116,7 @@ figure(1)
 plot(time,enzymeA(:,1))
 xlabel('time [s]')
 ylabel('product concentration [uM]')
-title({'variation of product concentration with time',...
+title({'Enzyme A: variation of product concentration with time',...
     'at different substrate concentrations'})
 grid on
 hold on
@@ -131,7 +131,7 @@ figure(2)
 plot(time,enzymeB(:,1))
 xlabel('time [s]')
 ylabel('product concentration [uM]')
-title({'variation of product concentration with time',...
+title({'Enzyme B: variation of product concentration with time',...
     'at different substrate concentrations'})
 grid on
 hold on
@@ -146,7 +146,7 @@ figure(3)
 plot(time,enzymeC(:,1))
 xlabel('time [s]')
 ylabel('product concentration [uM]')
-title({'variation of product concentration with time',...
+title({'Enzyme C: variation of product concentration with time',...
     'at different substrate concentrations'})
 grid on
 hold on
@@ -161,7 +161,7 @@ figure(4)
 plot(time,enzymeD(:,1))
 xlabel('time [s]')
 ylabel('product concentration [uM]')
-title({'variation of product concentration with time',...
+title({'Enzyme D: variation of product concentration with time',...
     'at different substrate concentrations'})
 grid on
 hold on
@@ -176,7 +176,7 @@ figure(5)
 plot(time,enzymeE(:,1))
 xlabel('time [s]')
 ylabel('product concentration [uM]')
-title({'variation of product concentration with time',...
+title({'Enzyme E: variation of product concentration with time',...
     'at different substrate concentrations'})
 grid on
 hold on
@@ -190,6 +190,7 @@ hold off
 % Plot set 2/2
 % Micheles-Menten curve of vNaught [uM/s]vs. substrate concentration [uM] 
 % Enzyme A
+figure(6)
 subplot(3,2,1)
 plot(subConc(1,:),v_naught_sub_i(1,:))
 grid on
