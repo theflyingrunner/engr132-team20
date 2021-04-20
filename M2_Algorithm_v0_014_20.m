@@ -1,4 +1,4 @@
-function [subConc,v_naught_sub_i] = vNaught()
+function [subConc,v_naught_sub_i] = M2_Algorithm_v0_014_20()
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ENGR 132 
 % Program Description 
@@ -7,15 +7,15 @@ function [subConc,v_naught_sub_i] = vNaught()
 %   enzyme. In addition, it finds the mean of the test duplicates.
 %   2. Perform linear regression for the first 20 seconds of reaction to
 %   identify initial reaction rate. 
-%   3. Generate reaction curves for all 5 enzymes
-%   4. Generate noisy Micheles-Menten curve 
+%   3. Generate reaction curves for all 5 enzymes [figs. 1-5]
+%   4. Generate noisy Micheles-Menten curve [fig. 6]
 % To use the function, use command:
 % [substrate_concentration, v_naught] = vNaught()
 % This will create two variables in your workspace: one with substrate
 % concentrations (uM) and another with tthe v0 [uM/s] for all 5 enzymes.
 %
 % Function Call
-% vNaught()
+% [subConc,v_naught_sub_i] = M2_Algorithm_v0_014_20()
 %
 % Input Arguments
 % None
@@ -125,6 +125,7 @@ for k = 2:10
 end
 lgd = legend('S1: 3.75','S2: 7.5','S3: 15','S4: 30','S5: 65','S6: 125','S7: 250','S8: 500','S9: 1000', 'S10: 2000');
 lgd.Title.String = 'Substrate Concentration [uM]';
+axis([0 1000 0 250])
 hold off
 % Enzyme B
 figure(2)
@@ -140,6 +141,7 @@ for k = 2:10
 end
 lgd = legend('S1: 3.75','S2: 7.5','S3: 15','S4: 30','S5: 65','S6: 125','S7: 250','S8: 500','S9: 1000', 'S10: 2000');
 lgd.Title.String = 'Substrate Concentration [uM]';
+axis([0 1000 0 250])
 hold off
 % Enzyme C
 figure(3)
@@ -155,6 +157,7 @@ for k = 2:10
 end
 lgd = legend('S1: 3.75','S2: 7.5','S3: 15','S4: 30','S5: 65','S6: 125','S7: 250','S8: 500','S9: 1000', 'S10: 2000');
 lgd.Title.String = 'Substrate Concentration [uM]';
+axis([0 1000 0 250])
 hold off
 % Enzyme D
 figure(4)
@@ -170,6 +173,7 @@ for k = 2:10
 end
 lgd = legend('S1: 3.75','S2: 7.5','S3: 15','S4: 30','S5: 65','S6: 125','S7: 250','S8: 500','S9: 1000', 'S10: 2000');
 lgd.Title.String = 'Substrate Concentration [uM]';
+axis([0 1000 0 250])
 hold off
 % Enzyme E
 figure(5)
@@ -185,6 +189,7 @@ for k = 2:10
 end
 lgd = legend('S1: 3.75','S2: 7.5','S3: 15','S4: 30','S5: 65','S6: 125','S7: 250','S8: 500','S9: 1000', 'S10: 2000');
 lgd.Title.String = 'Substrate Concentration [uM]';
+axis([0 1000 0 250])
 hold off
 
 % Plot set 2/2
